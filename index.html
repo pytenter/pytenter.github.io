@@ -1,299 +1,568 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>小梅吴 | Personal Homepage</title>
+  <title>Ziyi Pan | Personal Homepage</title>
 
   <style>
+    :root {
+      --bg: #060816;
+      --bg-2: #0b1026;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --text: #f8fafc;
+      --muted: #a8b3cf;
+      --blue: #38bdf8;
+      --purple: #a78bfa;
+      --green: #34d399;
+      --pink: #fb7185;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      line-height: 1.6;
-      color: #1f2937;
-      background: #f5f7fb;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.22), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(167, 139, 250, 0.18), transparent 34%),
+        radial-gradient(circle at 50% 90%, rgba(52, 211, 153, 0.12), transparent 38%),
+        linear-gradient(135deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 460px;
+      height: 460px;
+      right: -180px;
+      top: 160px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.16);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
     }
 
     a {
-      color: #2563eb;
+      color: inherit;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
     .container {
-      width: min(1100px, 92%);
+      width: min(1120px, 92%);
       margin: 0 auto;
     }
 
     header {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 8, 22, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav {
+      height: 76px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
     }
 
     .logo {
-      font-weight: 800;
-      font-size: 20px;
-      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 0 28px rgba(56, 189, 248, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .nav-links a {
-      margin-left: 22px;
-      font-size: 15px;
-      color: #374151;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      text-shadow: 0 0 16px rgba(56, 189, 248, 0.75);
     }
 
     .hero {
-      padding: 80px 0 60px;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.14), transparent 30%);
+      padding: 98px 0 72px;
+      position: relative;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 40px;
+      grid-template-columns: 1.3fr 0.75fr;
+      gap: 48px;
       align-items: center;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.32);
       border-radius: 999px;
-      background: #e0ecff;
-      color: #1d4ed8;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 18px;
+      background: rgba(56, 189, 248, 0.08);
+      color: #dff7ff;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.16);
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(52, 211, 153, 0.12);
     }
 
     h1 {
-      font-size: clamp(38px, 6vw, 64px);
-      line-height: 1.08;
-      color: #111827;
-      margin-bottom: 18px;
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #fff, var(--blue), var(--purple), #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .subtitle {
-      font-size: 20px;
-      color: #4b5563;
-      margin-bottom: 26px;
-      max-width: 720px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 19px;
+      margin-bottom: 32px;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 34px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 18px;
+      border-radius: 15px;
+      font-weight: 900;
+      transition: 0.22s ease;
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .btn-primary {
-      background: #2563eb;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
       color: white;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-      text-decoration: none;
-      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(56, 189, 248, 0.22);
     }
 
     .btn-secondary {
-      background: white;
-      color: #1f2937;
-      border: 1px solid #d1d5db;
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
     }
 
-    .btn-secondary:hover {
-      text-decoration: none;
-      transform: translateY(-2px);
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.34);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 680px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      color: white;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .profile-card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 26px;
+      position: relative;
       padding: 30px;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-      text-align: center;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), transparent, rgba(167, 139, 250, 0.32));
+      z-index: -1;
+      filter: blur(16px);
+      opacity: 0.7;
     }
 
     .avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #10b981);
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 156px;
+      height: 156px;
+      border-radius: 36px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.35), transparent 26%),
+        linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
       color: white;
-      font-size: 42px;
-      font-weight: 800;
+      font-size: 54px;
+      font-weight: 1000;
+      box-shadow: 0 24px 60px rgba(56, 189, 248, 0.26);
+      transform: rotate(-3deg);
     }
 
     .profile-card h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
-      color: #111827;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .profile-card .role {
+      text-align: center;
+      color: #dbeafe;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
     .profile-card p {
-      color: #6b7280;
+      color: var(--muted);
+      text-align: center;
       font-size: 15px;
     }
 
+    .profile-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .profile-item {
+      padding: 13px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbeafe;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
     section {
-      padding: 64px 0;
+      padding: 72px 0;
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 1000;
+      margin-bottom: 8px;
     }
 
     .section-title {
-      font-size: 32px;
-      margin-bottom: 14px;
-      color: #111827;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -1.2px;
+      margin-bottom: 12px;
     }
 
     .section-desc {
-      color: #6b7280;
-      max-width: 760px;
-      margin-bottom: 30px;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .glass {
+      padding: 30px;
+      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 17px;
+    }
+
+    .about-text strong {
+      color: white;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 22px;
     }
 
     .card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-      transition: 0.2s ease;
+      position: relative;
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(18px);
+      transition: 0.22s ease;
+      overflow: hidden;
+      min-height: 245px;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.12);
+      filter: blur(4px);
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+      transform: translateY(-7px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(167, 139, 250, 0.22));
+      margin-bottom: 18px;
+      font-size: 21px;
     }
 
     .card h3 {
-      font-size: 20px;
+      font-size: 21px;
       margin-bottom: 10px;
-      color: #111827;
     }
 
     .card p {
-      color: #6b7280;
+      color: var(--muted);
       font-size: 15px;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
     }
 
     .tag {
-      background: #f3f4f6;
-      color: #374151;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
       border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 13px;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.085);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 900;
     }
 
-    .about-box {
-      background: white;
-      border: 1px solid #e5e7eb;
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      padding: 22px;
       border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(18px);
     }
 
-    .about-box p {
-      margin-bottom: 16px;
-      color: #4b5563;
+    .timeline-date {
+      color: var(--green);
+      font-weight: 1000;
     }
 
-    .contact {
-      background: #111827;
-      color: white;
-      border-radius: 28px;
-      padding: 40px;
+    .timeline-content h3 {
+      margin-bottom: 6px;
+    }
+
+    .timeline-content p {
+      color: var(--muted);
+    }
+
+    .skills-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 12px 15px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      color: #e0f2fe;
+      font-weight: 900;
+      transition: 0.18s ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-3px);
+      background: rgba(56, 189, 248, 0.16);
+      border-color: rgba(56, 189, 248, 0.36);
+    }
+
+    .contact-box {
       text-align: center;
+      padding: 44px;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.20), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.18), transparent 36%),
+        rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(22px);
+      box-shadow: var(--shadow);
     }
 
-    .contact h2 {
-      font-size: 30px;
+    .contact-box h2 {
+      font-size: clamp(30px, 4vw, 48px);
       margin-bottom: 12px;
     }
 
-    .contact p {
-      color: #d1d5db;
-      margin-bottom: 22px;
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 24px;
     }
 
-    .contact a {
-      color: white;
-      font-weight: 700;
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     footer {
+      padding: 34px 0;
       text-align: center;
-      padding: 30px 0;
-      color: #6b7280;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 14px;
     }
 
-    @media (max-width: 820px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
+    @media (max-width: 900px) {
+      .hero-grid,
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .nav {
-        flex-direction: column;
-        gap: 12px;
+      .stats {
+        grid-template-columns: 1fr;
       }
 
-      .nav-links a {
-        margin: 0 8px;
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        height: auto;
+        padding: 18px 0;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
       }
     }
   </style>
@@ -302,11 +571,16 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="logo">小梅吴</div>
+      <a class="logo" href="#">
+        <span class="logo-mark">Z</span>
+        <span>Ziyi Pan</span>
+      </a>
+
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#interests">Interests</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -316,42 +590,88 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="badge">AI / Multimodal Learning / LLM Systems</span>
-          <h1>Hello, I am 小梅吴.</h1>
+          <div class="eyebrow">
+            <span class="pulse"></span>
+            Undergraduate Student · AI Learner · Builder
+          </div>
+
+          <h1>
+            Hi, I am <span class="gradient-text">Ziyi Pan</span>.
+          </h1>
+
           <p class="subtitle">
-            I am interested in artificial intelligence, multimodal large language models,
-            agent security, and efficient LLM inference systems.
+            I am an undergraduate student at South China University of Technology,
+            interested in artificial intelligence, multimodal large language models,
+            efficient LLM inference, and secure AI systems.
           </p>
 
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="#projects">View My Projects</a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore My Work →</a>
             <a class="btn btn-secondary" href="https://github.com/pytenter" target="_blank">GitHub Profile</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>AI</strong>
+              <span>Research Interest</span>
+            </div>
+            <div class="stat">
+              <strong>SCUT</strong>
+              <span>Undergraduate Student</span>
+            </div>
+            <div class="stat">
+              <strong>LLM</strong>
+              <span>Systems & Applications</span>
+            </div>
           </div>
         </div>
 
-        <div class="profile-card">
-          <div class="avatar">吴</div>
-          <h2>小梅吴</h2>
-          <p>Student & AI Learner</p>
-          <p>Exploring multimodal AI, LLM acceleration, and secure AI systems.</p>
-        </div>
+        <aside class="profile-card">
+          <div class="avatar">ZP</div>
+          <h2>Ziyi Pan</h2>
+          <div class="role">Undergraduate Student at SCUT</div>
+          <p>
+            Exploring the boundary between intelligent models, practical systems,
+            and trustworthy AI applications.
+          </p>
+
+          <div class="profile-list">
+            <div class="profile-item">📍 South China University of Technology</div>
+            <div class="profile-item">🤖 Multimodal AI & LLM Systems</div>
+            <div class="profile-item">🚀 Learning by Building Projects</div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section id="about">
       <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-box">
-          <p>
-            I am currently learning and building projects in artificial intelligence,
-            large language models, multimodal learning, and database application systems.
+        <div class="section-head">
+          <div class="section-kicker">About Me</div>
+          <h2 class="section-title">Building, learning, and exploring intelligent systems.</h2>
+          <p class="section-desc">
+            I enjoy understanding how modern AI systems work and turning ideas into real projects.
           </p>
+        </div>
+
+        <div class="glass about-text">
           <p>
-            My recent interests include vision-language models, KV cache quantization,
-            inference acceleration, agent security, and practical AI-powered applications.
+            I am <strong>Ziyi Pan</strong>, an undergraduate student at
+            <strong>South China University of Technology</strong>.
+            My academic interests lie in artificial intelligence, especially
+            multimodal large language models, LLM inference acceleration, agent security,
+            and database-driven application systems.
           </p>
+
           <p>
-            This homepage is used to present my projects, learning experiences, and research interests.
+            I am currently learning the foundations and applications of modern AI,
+            including vision-language models, retrieval-augmented generation,
+            model compression, KV cache quantization, and AI-powered software systems.
+          </p>
+
+          <p>
+            This website is a personal space for presenting my learning journey,
+            selected projects, technical interests, and future research directions.
           </p>
         </div>
       </div>
@@ -359,46 +679,55 @@
 
     <section id="interests">
       <div class="container">
-        <h2 class="section-title">Research & Learning Interests</h2>
-        <p class="section-desc">
-          I am especially interested in the intersection of multimodal intelligence,
-          efficient inference, and trustworthy AI systems.
-        </p>
+        <div class="section-head">
+          <div class="section-kicker">Interests</div>
+          <h2 class="section-title">Research & Learning Interests</h2>
+          <p class="section-desc">
+            I am interested in both model-level intelligence and system-level implementation.
+          </p>
+        </div>
 
         <div class="grid">
           <div class="card">
+            <div class="icon">🧠</div>
             <h3>Multimodal Large Language Models</h3>
             <p>
-              Learning models such as CLIP, BLIP, Flamingo, LLaVA, and vision-language reasoning systems.
+              Learning how models connect vision and language for perception,
+              reasoning, generation, and interactive applications.
             </p>
             <div class="tags">
               <span class="tag">CLIP</span>
+              <span class="tag">BLIP</span>
               <span class="tag">LLaVA</span>
               <span class="tag">VLM</span>
             </div>
           </div>
 
           <div class="card">
+            <div class="icon">⚡</div>
             <h3>LLM Inference Acceleration</h3>
             <p>
-              Exploring KV cache quantization, model compression, rotation methods, and efficient serving.
+              Exploring efficient inference techniques such as KV cache quantization,
+              model compression, rotation methods, and serving optimization.
             </p>
             <div class="tags">
               <span class="tag">KV Cache</span>
               <span class="tag">Quantization</span>
-              <span class="tag">Acceleration</span>
+              <span class="tag">Systems</span>
             </div>
           </div>
 
           <div class="card">
-            <h3>Agent Security</h3>
+            <div class="icon">🛡️</div>
+            <h3>AI Security & Agents</h3>
             <p>
-              Studying potential risks in multi-agent systems, prompt injection, and secure coordination.
+              Studying secure AI interactions, multi-agent coordination,
+              prompt injection risks, and trustworthy AI application design.
             </p>
             <div class="tags">
-              <span class="tag">AI Security</span>
-              <span class="tag">Agents</span>
+              <span class="tag">Agent Security</span>
               <span class="tag">Prompt Injection</span>
+              <span class="tag">Trustworthy AI</span>
             </div>
           </div>
         </div>
@@ -407,48 +736,102 @@
 
     <section id="projects">
       <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-desc">
-          Selected projects from my GitHub repositories and coursework.
-        </p>
+        <div class="section-head">
+          <div class="section-kicker">Projects</div>
+          <h2 class="section-title">Selected Projects</h2>
+          <p class="section-desc">
+            Some of my coursework and personal projects are focused on AI applications,
+            database systems, and optimization problems.
+          </p>
+        </div>
 
         <div class="grid">
-          <div class="card">
+          <a class="card" href="https://github.com/pytenter/secure-campus-chatbot" target="_blank">
+            <div class="icon">💬</div>
             <h3>Secure Campus Chatbot</h3>
             <p>
               A campus-oriented chatbot project exploring retrieval-augmented generation,
-              secure interaction, and practical AI assistant design.
+              LLM-based interaction, and secure assistant design.
             </p>
             <div class="tags">
               <span class="tag">RAG</span>
-              <span class="tag">Chatbot</span>
               <span class="tag">LLM</span>
+              <span class="tag">Chatbot</span>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card" href="https://github.com/pytenter/database-medicine" target="_blank">
+            <div class="icon">🗄️</div>
             <h3>Database Medicine System</h3>
             <p>
-              A database application system designed for medicine management,
-              involving role-based functions and database modeling.
+              A database application system for medicine management, including
+              role-based functions, data modeling, and system design.
             </p>
             <div class="tags">
               <span class="tag">Database</span>
               <span class="tag">SQL</span>
               <span class="tag">System Design</span>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card" href="https://github.com/pytenter/Car-transporting-system" target="_blank">
+            <div class="icon">🚚</div>
             <h3>Car Transporting System</h3>
             <p>
               A collaborative scheduling and simulation project for new-energy logistics vehicles,
-              including route planning and dispatching strategies.
+              involving routing, dispatching, and optimization strategies.
             </p>
             <div class="tags">
               <span class="tag">Scheduling</span>
               <span class="tag">Simulation</span>
               <span class="tag">Optimization</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Journey</div>
+          <h2 class="section-title">Academic & Technical Journey</h2>
+          <p class="section-desc">
+            A simple timeline of my current learning path and technical focus.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Now</div>
+            <div class="timeline-content">
+              <h3>Undergraduate Study at SCUT</h3>
+              <p>
+                Studying computer science related topics and building practical projects
+                in AI, databases, and software systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Learning Focus</div>
+            <div class="timeline-content">
+              <h3>Multimodal AI and Large Language Models</h3>
+              <p>
+                Learning model architectures such as Transformer, ViT, CLIP, BLIP,
+                Flamingo, and LLaVA, with a focus on understanding their mechanisms.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Research Interest</div>
+            <div class="timeline-content">
+              <h3>Efficient and Secure AI Systems</h3>
+              <p>
+                Exploring LLM inference acceleration, KV cache quantization,
+                multi-agent security, and reliable AI application design.
+              </p>
             </div>
           </div>
         </div>
@@ -457,25 +840,31 @@
 
     <section id="skills">
       <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <p class="section-desc">
-          Programming, AI development, and project implementation skills.
-        </p>
+        <div class="section-head">
+          <div class="section-kicker">Skills</div>
+          <h2 class="section-title">Technical Stack</h2>
+          <p class="section-desc">
+            Tools and technologies I use or am currently learning.
+          </p>
+        </div>
 
-        <div class="about-box">
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">C++</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">Linux</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Large Language Models</span>
-            <span class="tag">Multimodal Learning</span>
-            <span class="tag">Database Systems</span>
+        <div class="glass">
+          <div class="skills-cloud">
+            <span class="skill">Python</span>
+            <span class="skill">C++</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">SQL</span>
+            <span class="skill">PyTorch</span>
+            <span class="skill">Git</span>
+            <span class="skill">GitHub</span>
+            <span class="skill">Linux</span>
+            <span class="skill">Docker</span>
+            <span class="skill">Database Systems</span>
+            <span class="skill">Large Language Models</span>
+            <span class="skill">Multimodal Learning</span>
+            <span class="skill">RAG</span>
+            <span class="skill">Agent Security</span>
+            <span class="skill">KV Cache Quantization</span>
           </div>
         </div>
       </div>
@@ -483,23 +872,26 @@
 
     <section id="contact">
       <div class="container">
-        <div class="contact">
-          <h2>Contact</h2>
+        <div class="contact-box">
+          <h2>Let's Connect</h2>
           <p>
-            Feel free to contact me or visit my GitHub profile.
+            I am always open to learning, collaboration, and discussions about AI,
+            multimodal models, and intelligent systems.
           </p>
-          <p>
-            Email: <a href="mailto:xwu282305@gmail.com">xwu282305@gmail.com</a>
-            &nbsp; | &nbsp;
-            GitHub: <a href="https://github.com/pytenter" target="_blank">github.com/pytenter</a>
-          </p>
+
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:xwu282305@gmail.com">Email Me</a>
+            <a class="btn btn-secondary" href="https://github.com/pytenter" target="_blank">GitHub</a>
+            <a class="btn btn-secondary" href="https://pytenter.github.io" target="_blank">Homepage</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2026 小梅吴. Built with GitHub Pages.
+    © 2026 Ziyi Pan. Built with GitHub Pages.
   </footer>
 </body>
 </html>
+```

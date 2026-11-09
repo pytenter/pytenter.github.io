@@ -140,7 +140,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .profile-education p { display: flex; flex-wrap: wrap; gap: .15rem .9rem; margin: 0; color: #53687f; font-size: 14px; line-height: 1.9; }
 .profile-education strong { font-weight: 600; }
 .profile-portrait { min-width: 0; width: 100%; margin-top: .8rem; }
-.profile-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 7 / 10; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 28px rgb(32 52 76 / 7%); }
+.profile-portrait img { display: block; width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 28px rgb(32 52 76 / 7%); }
 .profile-portrait figcaption { margin-top: .7rem; color: #63758a; font-size: 13px; letter-spacing: .1em; line-height: 1.8; text-align: center; }
 
 /* Open rows and fine rules give long-form research content room to breathe. */

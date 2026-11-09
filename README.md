@@ -7,7 +7,7 @@
 - `index.html`：个人信息、教育经历、论文、项目、荣誉与联系方式。
 - `static/css/main.css`：中文排版、响应式布局、图片弹窗和打印样式。
 - `static/js/main.js`：手机导航、栏目高亮与图片放大等渐进增强功能。
-- `static/assets/portrait.webp`：本人提供的照片，经等比缩小与压缩用于网页。
+- `static/assets/portrait.webp`：本人提供的插画头像，经等比缩小与压缩用于网页，保留完整画面。
 - `static/assets/research/`：论文方法图与研究动机图。
 - `static/assets/video/`：真机录像双视角回放录屏（H.264 MP4）和封面图，播放器按需加载，不自动播放。
 - `static/assets/robot-gallery/`：录屏下方的四张机械臂过程图，取自 Gwenstadii 主页并保留来源归属。
@@ -30,4 +30,4 @@
 
 ## 模板来源
 
-布局借鉴及许可声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。个人照片、研究文字和论文图示的权利归各自作者所有。
+布局借鉴及许可声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。个人头像、研究文字和论文图示的权利归各自作者所有。

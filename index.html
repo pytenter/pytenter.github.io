@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://pytenter.github.io/static/assets/portrait.webp">
   <link rel="canonical" href="https://pytenter.github.io/">
   <link rel="icon" type="image/svg+xml" href="static/assets/favicon.svg">
-  <link rel="stylesheet" href="static/css/main.css">
+  <link rel="stylesheet" href="static/css/main.css?v=20261109-video">
   <title>潘子逸 | 个人学术主页</title>
   <script src="static/js/main.js" defer></script>
   <script type="application/ld+json">
@@ -92,15 +92,24 @@
           </div>
         </div>
         <details class="paper-details">
-          <summary>方法与研究详情</summary>
+          <summary>研究问题、算法创新与贡献</summary>
           <div class="details-body">
-            <p>循环状态量化是一个持续过程：量化后的状态在每一步解码中都会被读取、更新和写回。因此，表示变换需要考虑量化误差在多个循环步骤中的影响。</p>
-            <ul class="contribution-list">
-              <li><strong>适配模型结构的旋转。</strong>针对 Gated DeltaNet（GDN）使用 Key 侧变换，针对 Kimi Delta Attention（KDA）使用 Value 侧变换，调整状态的量化坐标。</li>
-              <li><strong>状态与输出联合重建。</strong>以高精度路径为参考，联合优化局部输出重建损失与循环状态重建损失，使用 H64 截断反向传播学习旋转矩阵，保持预训练模型参数冻结。</li>
-              <li><strong>推理路径集成。</strong>稿件描述了 SGLang 推理路径中的冻结旋转，以及融合状态反量化、循环更新与再量化的内核，在每步解码后将状态写回 INT8。</li>
-            </ul>
-            <p class="paper-note">研究模型包括 Qwen3.5-9B 和 Ling-3.0-tiny，关注表示学习与实际循环状态更新路径的结合。</p>
+            <section class="research-detail-block" aria-labelledby="learsq-question">
+              <h4 id="learsq-question">研究问题</h4>
+              <p>GDN、KDA 等线性注意力模型通过固定大小的循环状态保存历史信息，但高精度状态仍需在每步解码中反复读取和更新，带来显存与访存开销。直接使用 INT8 会使量化误差随循环更新传播，固定 Hadamard 旋转又难以适配不同模型和层的状态分布。因此，研究重点是如何学习更适合量化的状态表示，同时兼顾状态重建与输出保真。</p>
+            </section>
+            <section class="research-detail-block" aria-labelledby="learsq-innovation">
+              <h4 id="learsq-innovation">算法创新</h4>
+              <ul class="contribution-list">
+                <li><strong>结构适配的可学习正交旋转：</strong>冻结预训练模型参数，仅学习旋转；分别在 GDN 的 Key 侧和 KDA 的 Value 侧调整量化坐标。</li>
+                <li><strong>状态与局部输出联合重建：</strong>以高精度路径为参考，联合优化局部输出重建损失与循环状态重建损失，兼顾内部状态表示与当前输出的保真。</li>
+                <li><strong>跨循环步骤的旋转学习：</strong>使用 H64 截断反向传播，让训练目标考虑连续 64 个词元中量化误差的累积影响。</li>
+              </ul>
+            </section>
+            <section class="research-detail-block" aria-labelledby="learsq-contribution">
+              <h4 id="learsq-contribution">贡献</h4>
+              <p>形成从模型适配的表示学习到实际推理路径的循环状态量化方案，覆盖 Qwen3.5-9B／GDN 与 Ling-3.0-tiny／KDA 两类结构。将学习后的旋转冻结并接入 SGLang，融合状态反量化、循环更新与再量化，使循环状态在每步解码后以 INT8 写回。</p>
+            </section>
           </div>
         </details>
       </article>
@@ -125,26 +134,37 @@
           </div>
         </div>
         <details class="paper-details">
-          <summary>方法与实验结果</summary>
+          <summary>研究问题、算法创新与贡献</summary>
           <div class="details-body">
-            <ul class="contribution-list">
-              <li><strong>轨迹误差诊断。</strong>分析量化误差的递归传播及历史位置影响的不均匀性。在论文评测设置中，Value 侧传播是主要的剩余误差来源之一。</li>
-              <li><strong>重要性与收益联合分配。</strong>使用当前及历史信息，联合因果重要性与精度升级收益，将符合条件的 25% 历史 Value 升至 INT4。</li>
-              <li><strong>压缩域注意力。</strong>直接在 K2/V2/V4 混合精度缓存上计算注意力，避免完整物化历史 FP16 KV Cache。</li>
-            </ul>
-            <div class="metrics-grid" aria-label="TrajKV 稿件中的实验结果">
-              <div class="metric"><strong>~2.50</strong><span>有效 KV 存储位宽（比特/元素）</span></div>
-              <div class="metric"><strong>+17.77</strong><span>AIME24 准确率提升（百分点）</span></div>
-              <div class="metric"><strong>25%</strong><span>符合条件的历史 Value 升为 INT4</span></div>
-            </div>
-            <p class="paper-note">AIME24 对比使用 DeepSeek-R1-Distill-Llama-8B：匹配的 PatternKV-Base 为 35.56%，TrajKV 为 53.33%。有效 KV 位宽包含数据与元信息开销，不代表完整模型的总显存占用。</p>
-            <figure class="detail-figure">
+            <section class="research-detail-block" aria-labelledby="trajkv-question">
+              <h4 id="trajkv-question">研究问题</h4>
+              <p>KV Cache 量化误差不会止于单次重构：历史缓存被后续查询反复使用，误差经过注意力输出、隐藏状态和新生成的 KV 继续传播。不同历史位置对后续解码的影响也不相同。因此，在有限精度预算下，需要判断哪些历史状态值得优先保护，而非只追求缓存的局部重构精度。</p>
+            </section>
+            <section class="research-detail-block" aria-labelledby="trajkv-innovation">
+              <h4 id="trajkv-innovation">算法创新</h4>
+              <ul class="contribution-list">
+                <li><strong>重要性与重建收益联合评分：</strong>结合历史注意力反映的因果重要性与 INT2→INT4 重建收益，同时考虑历史状态对后续解码的影响和精度升级的实际收益。</li>
+                <li><strong>固定预算下的选择性保护：</strong>仅使用当前及过去的信息，将符合条件的 25% 历史 Value 升为 INT4，其余历史 Value 与 Key 保持 INT2，有效 KV 存储预算约为 2.50 比特／元素。</li>
+                <li><strong>压缩域解码：</strong>直接在 K2/V2/V4 混合精度缓存上计算注意力，避免完整物化历史 FP16 KV Cache。</li>
+              </ul>
+            </section>
+            <section class="research-detail-block" aria-labelledby="trajkv-contribution">
+              <h4 id="trajkv-contribution">贡献</h4>
+              <p>将轨迹误差诊断、精度分配与压缩域服务路径结合，针对论文评测的长思维链设置揭示历史影响不均与 Value 侧传播问题，并通过推理和系统实验评估方法效果。</p>
+              <div class="metrics-grid" aria-label="TrajKV 稿件中的实验结果">
+                <div class="metric"><strong>~2.50</strong><span>有效 KV 存储位宽（比特/元素）</span></div>
+                <div class="metric"><strong>+17.77</strong><span>AIME24 准确率提升（百分点）</span></div>
+                <div class="metric"><strong>25%</strong><span>符合条件的历史 Value 升为 INT4</span></div>
+              </div>
+              <p class="paper-note">AIME24 对比使用 DeepSeek-R1-Distill-Llama-8B：匹配的 PatternKV-Base 为 35.56%，TrajKV 为 53.33%。有效 KV 位宽包含数据与元信息开销，不代表完整模型的总显存占用。</p>
+              <figure class="detail-figure">
               <a class="figure-button" href="static/assets/research/trajkv-motivation.webp" data-figure data-caption="TrajKV 研究动机：递归轨迹误差、历史位置影响差异、Value 侧误差传播与选择性精度保护。" aria-label="放大查看 TrajKV 研究动机图">
                 <img src="static/assets/research/trajkv-motivation.webp" width="1367" height="1028" loading="lazy" decoding="async" alt="TrajKV 研究动机的四个部分：递归轨迹误差、非均匀历史影响、Value 侧误差传播，以及对重要缓存内容的选择性保护。">
                 <span class="figure-hint" aria-hidden="true">查看研究动机原图 ↗</span>
               </a>
               <figcaption>精度分配需要考虑历史缓存对后续解码的影响。</figcaption>
             </figure>
+            </section>
           </div>
         </details>
       </article>
@@ -160,14 +180,21 @@
           <li><strong>动作条件原型回放：</strong>融合多模态上下文、动作专家和物理运动特征，筛选具有代表性的历史示范，在新任务学习中定期回放以约束共享部分更新。</li>
           <li><strong>机器人数据与评估：</strong>完成 107 条真实示范轨迹的采集与整理、机器人状态及动作标签重建，开展视觉与机器人状态微调，以及 MuJoCo / Kinova 闭环评估实践。</li>
         </ul>
-        <div class="project-result" aria-label="LIBERO 四任务顺序学习的最终平均成功率">
+        <h4 class="project-results-title" id="libero-results-title">LIBERO 四任务顺序学习 · 最终平均成功率</h4>
+        <div class="project-result" role="group" aria-labelledby="libero-results-title">
           <div><span>普通 LoRA · 无回放</span><strong>24.5%</strong></div>
           <div><span>CL-LoRA · 无回放</span><strong>68.5%</strong></div>
           <div><span>CL-LoRA · 均匀回放</span><strong>87%</strong></div>
           <div><span>CL-LoRA · 原型回放</span><strong>91%</strong></div>
         </div>
-        <p class="project-note">以上为 LIBERO 仿真中四任务顺序学习结束后的平均成功率，使用单个训练种子；不作为真机任务成功率。</p>
         <div class="project-links"><a href="https://github.com/pytenter/cl-VLA" target="_blank" rel="noopener noreferrer">项目代码与实验记录 ↗</a></div>
+        <section class="project-media" aria-labelledby="project-video-title">
+          <h4 id="project-video-title">真机录像双视角回放</h4>
+          <video controls playsinline preload="metadata" poster="static/assets/video/poster.webp" width="1920" height="980" aria-labelledby="project-video-title">
+            <source src="static/assets/video/pi05-recording.mp4" type="video/mp4">
+            您的浏览器暂不支持视频播放，可以<a href="static/assets/video/pi05-recording.mp4">打开录屏文件</a>查看。
+          </video>
+        </section>
       </article>
     </section>
 

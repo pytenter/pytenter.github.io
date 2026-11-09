@@ -229,6 +229,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .details-body h3, .details-body h4 { margin: 1.6rem 0 .8rem; color: #304965; font-size: 17px; font-weight: 650; line-height: 1.6; }
 .details-body > :first-child { margin-top: 0; }
 .details-body > :last-child { margin-bottom: 0; }
+.research-detail-block + .research-detail-block { margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.research-detail-block > h4 { margin-top: 0; color: var(--accent-dark); }
+.research-detail-block > :last-child { margin-bottom: 0; }
 .paper-note { margin: 1.25rem 0 0; padding: .85rem 1rem; border-left: 2px solid #b5c9df; background: #f6f8fb; color: #53657b; font-size: 14px; line-height: 1.85; }
 .contribution-list { margin: 0 0 1.6rem; padding-left: 1.3rem; }
 .contribution-list li { padding-left: .25rem; margin-bottom: .65rem; }
@@ -260,10 +263,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .project-points li::marker { color: #7898b8; }
 .project-result { margin: 1rem 0; padding: .9rem 1.1rem; border-left: 2px solid #a6bfd9; background: #f5f8fc; color: #3d5875; font-size: 15px; line-height: 1.9; }
 .project-result strong { color: #2d4f74; }
+.project-results-title { margin: 1.5rem 0 .6rem; color: #36516e; font-size: 16px; line-height: 1.8; font-weight: 600; }
 .project-result > div { display: flex; justify-content: space-between; gap: .6rem 1.25rem; padding: .35rem 0; }
 .project-result > div + div { border-top: 1px solid #e0e8f1; }
 .project-result > div strong { flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.project-note { margin: 1rem 0 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.project-media { margin-top: 2rem; }
+.project-media h4 { margin: 0 0 .9rem; color: #36516e; font-size: 17px; line-height: 1.8; font-weight: 600; }
+.project-media video { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #111923; }
+.project-media video:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .project-links { display: flex; flex-wrap: wrap; gap: .6rem 1.35rem; margin-top: 1.1rem; font-size: 14px; line-height: 1.85; font-weight: 600; }
 .skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 1.8rem; }
 .skill-group { min-width: 0; }

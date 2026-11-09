@@ -10,7 +10,7 @@
 - `static/assets/portrait.webp`：本人提供的插画头像，经等比缩小与压缩用于网页，保留完整画面。
 - `static/assets/research/`：论文方法图与研究动机图。
 - `static/assets/video/`：真机录像双视角回放录屏（H.264 MP4）和封面图，播放器按需加载，不自动播放。
-- `static/assets/robot-gallery/`：录屏下方的四张机械臂过程图，取自 Gwenstadii 主页并保留来源归属。
+- `static/assets/robot-gallery/`：本人拍摄的四张机械臂过程图，放在录屏下方，按“桌面接近、抓取、搬到纸盒上方、放入盒中”的过程展示。
 
 网站为原生静态页面，无须安装依赖或构建。GitHub Pages 直接发布仓库根目录。原有根目录 PNG 和早期 ZIP 保留。
 
@@ -31,3 +31,5 @@
 ## 模板来源
 
 布局借鉴及许可声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。个人头像、研究文字和论文图示的权利归各自作者所有。
+
+图库展示顺序为 `04-release.jpg` → `03-transport.jpg` → `02-grasp.jpg` → `01-approach.jpg`。这些历史文件名保留，页面图注以实际“桌面抓取后放入纸盒”的过程为准。

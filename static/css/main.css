@@ -273,7 +273,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .project-gallery { margin-top: 2rem; }
 .gallery-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.25rem; margin-bottom: 1rem; }
 .gallery-heading h4 { margin: 0; color: #36516e; font-size: 17px; line-height: 1.8; font-weight: 600; }
-.gallery-source { font-size: 13px; line-height: 1.8; }
 .robot-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1.2rem; }
 .robot-gallery figure { min-width: 0; margin: 0; }
 .robot-gallery-link { display: block; padding: .55rem; border: 1px solid var(--line); border-radius: 7px; background: #fff; cursor: zoom-in; transition: border-color 180ms ease, box-shadow 180ms ease; }

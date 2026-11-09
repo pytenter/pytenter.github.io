@@ -201,7 +201,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .paper-summary { margin-bottom: 1rem; color: #4d5e72; font-size: 16px; line-height: 1.9; }
 .paper-tags { display: flex; flex-wrap: wrap; gap: .4rem .55rem; margin: .9rem 0 1rem; }
 .paper-tags span { padding: .18rem .55rem; border: 1px solid #e0e7ef; border-radius: 4px; color: #506780; background: #f8fafc; font-size: 12px; line-height: 1.65; }
-.paper-links { display: flex; flex-wrap: wrap; gap: .55rem 1.2rem; align-items: center; font-size: 14px; font-weight: 650; }
 .paper-details { margin-top: 1.5rem; }
 .paper-details > summary {
   display: inline-flex;
@@ -271,6 +270,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .project-media h4 { margin: 0 0 .9rem; color: #36516e; font-size: 17px; line-height: 1.8; font-weight: 600; }
 .project-media video { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #111923; }
 .project-media video:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-gallery { margin-top: 2rem; }
+.gallery-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.25rem; margin-bottom: 1rem; }
+.gallery-heading h4 { margin: 0; color: #36516e; font-size: 17px; line-height: 1.8; font-weight: 600; }
+.gallery-source { font-size: 13px; line-height: 1.8; }
+.robot-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1.2rem; }
+.robot-gallery figure { min-width: 0; margin: 0; }
+.robot-gallery-link { display: block; padding: .55rem; border: 1px solid var(--line); border-radius: 7px; background: #fff; cursor: zoom-in; transition: border-color 180ms ease, box-shadow 180ms ease; }
+.robot-gallery-link:hover { border-color: #9ab5d3; box-shadow: 0 5px 22px rgb(40 72 108 / 6%); }
+.robot-gallery img { width: 100%; height: auto; border-radius: 3px; }
+.robot-gallery figcaption { margin-top: .65rem; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.robot-gallery figcaption strong { color: #3c5876; font-weight: 600; }
+@media (min-width: 992px) { .robot-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 575px) { .robot-gallery { grid-template-columns: minmax(0, 1fr); } }
 .project-links { display: flex; flex-wrap: wrap; gap: .6rem 1.35rem; margin-top: 1.1rem; font-size: 14px; line-height: 1.85; font-weight: 600; }
 .skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 1.8rem; }
 .skill-group { min-width: 0; }

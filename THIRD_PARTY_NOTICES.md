@@ -1,8 +1,8 @@
 # Third-party notices
 
-The academic layout and portions of its CSS are adapted from [Gwenstadii/gwenstadii.github.io](https://github.com/Gwenstadii/gwenstadii.github.io) at commit `9e5ef6197c212a12c24b150344345dfd60cdd047`, based on [Sen Li's academic homepage template](https://github.com/senli1073/academic-homepage-template). Personal content, photographs, and research claims from that reference site are not used.
+The academic layout and portions of its CSS are adapted from [Gwenstadii/gwenstadii.github.io](https://github.com/Gwenstadii/gwenstadii.github.io) at commit `9e5ef6197c212a12c24b150344345dfd60cdd047`, based on [Sen Li's academic homepage template](https://github.com/senli1073/academic-homepage-template). The four robot-operation photographs in `static/assets/robot-gallery/` are also reused from that reference repository at the same commit: `static/assets/img/openvla-kinova/01-approach.jpg`, `02-grasp.jpg`, `03-transport.jpg`, and `04-release.jpg`. Their source is credited beside the gallery and in each enlarged-image caption. The reference author's personal information and research claims are not used.
 
-The reference template carries the following license. It does not grant rights to this website's manuscript figures or personal research content.
+The reference template carries the following license. It does not establish a separate license for photographs, manuscript figures, or personal research content; those retain their respective authors' rights.
 
 MIT License
 

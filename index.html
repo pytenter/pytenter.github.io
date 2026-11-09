@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://pytenter.github.io/static/assets/portrait.webp">
   <link rel="canonical" href="https://pytenter.github.io/">
   <link rel="icon" type="image/svg+xml" href="static/assets/favicon.svg">
-  <link rel="stylesheet" href="static/css/main.css?v=20261109-video">
+  <link rel="stylesheet" href="static/css/main.css?v=20261109-gallery">
   <title>潘子逸 | 个人学术主页</title>
   <script src="static/js/main.js" defer></script>
   <script type="application/ld+json">
@@ -88,7 +88,6 @@
             <p class="paper-authors"><strong>潘子逸（Ziyi Pan）</strong><span class="author-note"> · 第一作者</span></p>
             <p class="paper-summary">针对 GDN、KDA 等线性注意力模型在解码中反复读取和更新循环状态的问题，研究 INT8 量化误差的累积与传播。LeaRSQ 在冻结预训练模型参数的条件下，联合优化状态与局部输出重建，分别在 GDN 的 Key 侧和 KDA 的 Value 侧学习适配模型的旋转。</p>
             <div class="paper-tags" aria-label="LeaRSQ 研究主题"><span>线性注意力</span><span>循环状态 INT8 量化</span><span>可学习旋转</span></div>
-            <div class="paper-links"><a href="https://github.com/pytenter/GDN-quantization" target="_blank" rel="noopener noreferrer">相关研究代码 ↗</a></div>
           </div>
         </div>
         <details class="paper-details">
@@ -194,6 +193,35 @@
             <source src="static/assets/video/pi05-recording.mp4" type="video/mp4">
             您的浏览器暂不支持视频播放，可以<a href="static/assets/video/pi05-recording.mp4">打开录屏文件</a>查看。
           </video>
+        </section>
+        <section class="project-gallery" aria-labelledby="robot-gallery-title">
+          <div class="gallery-heading"><h4 id="robot-gallery-title">机械臂操作过程</h4><a class="gallery-source" href="https://github.com/Gwenstadii/gwenstadii.github.io/blob/9e5ef6197c212a12c24b150344345dfd60cdd047/contents/real-robot.md" target="_blank" rel="noopener noreferrer">图片来源：Gwenstadii ↗</a></div>
+          <div class="robot-gallery">
+            <figure>
+              <a class="robot-gallery-link" href="static/assets/robot-gallery/01-approach.jpg" data-figure data-caption="接近：夹爪对准盒中苹果。图片来源：Gwenstadii。" aria-label="查看原图：夹爪对准盒中苹果">
+                <img src="static/assets/robot-gallery/01-approach.jpg" width="1279" height="1706" loading="lazy" decoding="async" alt="Kinova 机械臂伸向纸盒，张开的夹爪接近盒内苹果">
+              </a>
+              <figcaption><strong>接近</strong>：夹爪对准盒中苹果</figcaption>
+            </figure>
+            <figure>
+              <a class="robot-gallery-link" href="static/assets/robot-gallery/02-grasp.jpg" data-figure data-caption="抓取：夹住苹果并抬离盒底。图片来源：Gwenstadii。" aria-label="查看原图：夹住苹果并抬离盒底">
+                <img src="static/assets/robot-gallery/02-grasp.jpg" width="1279" height="1706" loading="lazy" decoding="async" alt="机械臂夹爪夹住苹果并将其抬离纸盒">
+              </a>
+              <figcaption><strong>抓取</strong>：夹住苹果并抬离盒底</figcaption>
+            </figure>
+            <figure>
+              <a class="robot-gallery-link" href="static/assets/robot-gallery/03-transport.jpg" data-figure data-caption="搬运：保持夹持并移动苹果。图片来源：Gwenstadii。" aria-label="查看原图：保持夹持并移动苹果">
+                <img src="static/assets/robot-gallery/03-transport.jpg" width="1279" height="1706" loading="lazy" decoding="async" alt="Kinova 机械臂保持夹持并搬运苹果，画面右侧可见另一台机械臂">
+              </a>
+              <figcaption><strong>搬运</strong>：保持夹持并移动苹果</figcaption>
+            </figure>
+            <figure>
+              <a class="robot-gallery-link" href="static/assets/robot-gallery/04-release.jpg" data-figure data-caption="放置：在纸盒旁的桌面释放苹果。图片来源：Gwenstadii。" aria-label="查看原图：在纸盒旁的桌面释放苹果">
+                <img src="static/assets/robot-gallery/04-release.jpg" width="1279" height="1706" loading="lazy" decoding="async" alt="机械臂张开夹爪，在纸盒旁的桌面放下苹果">
+              </a>
+              <figcaption><strong>放置</strong>：在纸盒旁的桌面释放苹果</figcaption>
+            </figure>
+          </div>
         </section>
       </article>
     </section>
